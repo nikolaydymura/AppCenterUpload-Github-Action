@@ -1,0 +1,41 @@
+name: 'Upload App Center CLI'
+description: 'GitHub Action to upload file to App Center using CLI and take results'
+author: 'Nikolay Dymura'
+inputs: 
+  group:
+    description: 'Distribution group'
+    required: false
+  file:
+    description: 'Path for file to upload'
+    required: true
+  app:
+    description: 'AppCenter app name'
+    required: true
+  owner:
+    description: 'AppCenter app owner'
+    required: true
+  token:
+    description: 'Upload token - you can get one from appcenter.ms/settings'
+    required: true
+outputs:
+  release-id:
+    description: "id of recently created release"
+  release-url:
+    description: "url of recently created release"
+  download-url:
+    description: "url to download release"
+  install-url:
+    description: "url to install release"
+branding:
+  color: 'red' 
+  icon: 'send'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.group }}
+    - ${{ inputs.file }}
+    - ${{ inputs.app }}
+    - ${{ inputs.owner }}
+    - ${{ inputs.token }}
+
