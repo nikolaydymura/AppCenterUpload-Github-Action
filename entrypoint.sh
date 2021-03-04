@@ -1,5 +1,5 @@
 #!/bin/sh
-upload_response=$(appcenter distribute release --token ${INPUT_TOKEN} -f ${INPUT_FILE} --output json --group ${INPUT_GROUP:-Collaborators} --app ${INPUT_OWNER}/${INPUT_APP})
+upload_response=$(appcenter distribute release --token ${INPUT_TOKEN} -f ${INPUT_FILE} --output json --group ${INPUT_GROUP:-Collaborators} --app ${INPUT_OWNER}/${INPUT_APP} --release-notes-file ${INPUT_NOTES})
 
 release_id=$(echo "$upload_response" | jq -r '.id')
 download_url=$(echo "$upload_response" | jq -r '.downloadUrl')
